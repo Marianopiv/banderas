@@ -7,6 +7,7 @@ export const FlagProvContext = createContext();
 const FlagProv = ({ children }) => {
   const [flags, setFlags] = useState(null);
   const [flagSelect, setFlagSelect] = useState('')
+  const [darkMode, setdarkMode] = useState(false)
 
   const fetchData = async () => {
     try {
@@ -25,16 +26,28 @@ const FlagProv = ({ children }) => {
       setFlags(result.data)
     } catch (error) {
       Swal.fire({
-        title: 'Error!',
-        text: 'not found',
+        background:`${darkMode?'#202D36':'white'}`,
+        color:`${darkMode?'white':''}`,
+        text: 'Not found',
         icon: 'error',
-        confirmButtonText: 'Cool'
+        confirmButtonText: 'ok'
       })
+      
     }
   } 
 
+  const handleRegion = (e) => {
+    const { value } = e.target;
+    if (value != "") {
+      fetchFilter("region", value);
+    }
+  };
 
-  return (<FlagProvContext.Provider value={{fetchData,flags,setFlags,fetchFilter,flagSelect,setFlagSelect}}>{children}</FlagProvContext.Provider>)
+  const toogleDarkMode = () => {
+    setdarkMode(!darkMode)
+
+  }
+  return (<FlagProvContext.Provider value={{fetchData,flags,setFlags,fetchFilter,toogleDarkMode,darkMode,flagSelect,setFlagSelect,handleRegion}}>{children}</FlagProvContext.Provider>)
 };
 
 export default FlagProv;
