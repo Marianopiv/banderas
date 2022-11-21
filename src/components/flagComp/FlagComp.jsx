@@ -26,7 +26,7 @@ const FlagComp = ({ name, flag, region, population, capital }) => {
         <div className="flex">
           <p className="font-bold">Currencies:</p>
           {Object.values(chosen.currencies).map(({ name, symbol }) => (
-            <h3>
+            <h3 key={name}>
               {name} Symbol:{symbol}
             </h3>
           ))}

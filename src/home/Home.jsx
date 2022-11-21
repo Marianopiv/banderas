@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import FlagComp from "../components/flagComp/FlagComp";
-import NavBar from "../components/navBar/NavBar";
 import { FlagProvContext } from "../context/FlagProv";
-import { regionNames,darkClasses } from "../config/config";
+import { regionNames, darkClasses } from "../config/config";
+import _ from "lodash";
 
 const Home = () => {
   const {
@@ -19,8 +19,11 @@ const Home = () => {
     fetchData();
   }, [flagSelect]);
 
-  
-  console.log(flagSelect);
+  const handleChange = (e) => {
+    setFlagSelect(e.target.value);
+  };
+
+  const debounceFunction = useCallback(_.debounce(handleChange,500),[])
   return (
     <>
       <div
@@ -41,7 +44,7 @@ const Home = () => {
               </button>
             </div>
             <input
-              onChange={(e) => setFlagSelect(e.target.value)}
+              onChange={debounceFunction}
               className={`text-xs w-5/6 p-3 border-2  rounded-md ${
                 darkMode ? darkClasses : "bg-white border-gray-100"
               }`}

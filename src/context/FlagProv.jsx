@@ -1,8 +1,8 @@
 import React, { createContext, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-
 export const FlagProvContext = createContext();
+
 
 const FlagProv = ({ children }) => {
   const [flags, setFlags] = useState(null);
@@ -10,20 +10,18 @@ const FlagProv = ({ children }) => {
   const [darkMode, setdarkMode] = useState(false)
   const [chosen, setChosen] = useState(null);
 
+
   const fetchData = async () => {
     try {
       const result = await axios.get("https://restcountries.com/v3.1/all");
-      console.log(result);
       setFlags(result.data);
     } catch (error) {
-      console.log("no anduvo");
     }
   };
 
   const fetchFilter = async (section,name) => {
     try {
       const result = await axios.get(`https://restcountries.com/v3.1/${section}/${name}`)
-      console.log(result.data)
       setFlags(result.data)
     } catch (error) {
       Swal.fire({
