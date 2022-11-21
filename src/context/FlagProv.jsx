@@ -8,6 +8,7 @@ const FlagProv = ({ children }) => {
   const [flags, setFlags] = useState(null);
   const [flagSelect, setFlagSelect] = useState('')
   const [darkMode, setdarkMode] = useState(false)
+  const [chosen, setChosen] = useState(null);
 
   const fetchData = async () => {
     try {
@@ -47,7 +48,7 @@ const FlagProv = ({ children }) => {
     setdarkMode(!darkMode)
 
   }
-  return (<FlagProvContext.Provider value={{fetchData,flags,setFlags,fetchFilter,toogleDarkMode,darkMode,flagSelect,setFlagSelect,handleRegion}}>{children}</FlagProvContext.Provider>)
+  return (<FlagProvContext.Provider value={{fetchData,flags,setFlags,fetchFilter,toogleDarkMode,darkMode,flagSelect,setFlagSelect,handleRegion,chosen,setChosen}}>{children}</FlagProvContext.Provider>)
 };
 
 export default FlagProv;

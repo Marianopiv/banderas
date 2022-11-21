@@ -23,7 +23,6 @@ const Home = () => {
   console.log(flagSelect);
   return (
     <>
-      <NavBar />
       <div
         className={`bg-gray-50 flex flex-col gap-4 ${
           darkMode ? " bg-slate-800 text-white" : "bg-white"
