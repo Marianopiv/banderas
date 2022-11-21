@@ -6,3 +6,5 @@ export  const regionNames = [ "Asia",
   ];
 
 export const darkClasses = "bg-slate-700 border-black text-white"
+
+export const chosenData = ["name","population","region","capital","top Level Domain","currencies","languages"]

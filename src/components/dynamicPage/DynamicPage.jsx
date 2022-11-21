@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { chosenData } from "../../config/config";
 import { FlagProvContext } from "../../context/FlagProv";
 import FlagComp from "../flagComp/FlagComp";
 
@@ -11,8 +12,17 @@ const DynamicPage = () => {
   const handleFlagDetail = () => {
     if (flags.length > 0) {
       const result = flags.find((item) => item.name.common === name);
-      setChosen(result);
-      console.log(result);
+
+      const utilData = {};
+      Object.entries(result).map((item) => {
+        if (chosenData.includes(item[0])) {
+          utilData[item[0]]=item[1]
+        }
+      });
+
+      console.log(utilData, "final result");
+      //Para la mejora meter ultilData en setChosen
+      setChosen(result)
     }
   };
 
@@ -50,8 +60,8 @@ const DynamicPage = () => {
               <div className="flex flex-col text-xs font-light">
                 <div className="flex">
                   <p className="font-bold">Native name:</p>
-                  {Object.values(chosen.name.nativeName).map((item) => (
-                    <h3>
+                  {Object.values(chosen.name.nativeName).map((item, index) => (
+                    <h3 key={index}>
                       {Object.entries(item).find(
                         (item) => item[0] === "common"
                       )}
