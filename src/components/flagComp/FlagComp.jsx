@@ -17,7 +17,6 @@ const FlagComp = ({ name, flag, region, population, capital }) => {
 
     
     const { population, region, subregion, capital, tld,borders } = chosen;
-    console.log(borders)
 
     /* const details = [
       { text: "population", data: population },
@@ -49,7 +48,7 @@ const FlagComp = ({ name, flag, region, population, capital }) => {
         </div>
         <div className="flex">
           <p className="font-bold">Languages:</p>
-          {Object.values(chosen.languages).map((item) => item)}
+          {Object.values(chosen.languages).map((item) => item+" ")}
         </div>
           <FlagDetail text="Border Countries" data={borders} />
         </div>

@@ -19,8 +19,6 @@ const DynamicPage = () => {
           utilData[item[0]] = item[1];
         }
       });
-      console.log(utilData);
-      console.log(result)
       setChosen(utilData);
     }
   };

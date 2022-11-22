@@ -37,7 +37,7 @@ const FlagDetail = ({ text, data }) => {
     return (
       <div className="flex flex-col mt-8">
         <p className="font-bold">{text}: </p>
-        <div className="flex justify-center gap-4">
+        <div className="flex justify-center gap-4 flex-wrap">
         {borderFound && borderFound.map((item) => <button className="border-gray-200 border-2 px-2"> {item.name.common}</button>)}
         </div>
        
