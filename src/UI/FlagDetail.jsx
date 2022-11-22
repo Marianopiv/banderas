@@ -1,9 +1,11 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { darkClasses } from "../config/config";
+import { FlagProvContext } from "../context/FlagProv";
 
 const FlagDetail = ({ text, data }) => {
-
   if (text === "Border Countries" && data) {
+    const { darkMode } = useContext(FlagProvContext);
     const [fullBorders, setFullBorders] = useState(null);
     const [borderFound, setBorderFound] = useState(null);
 
@@ -37,10 +39,22 @@ const FlagDetail = ({ text, data }) => {
     return (
       <div className="flex flex-col mt-8">
         <p className="font-bold">{text}: </p>
-        <div className="flex justify-center gap-4 flex-wrap">
-        {borderFound && borderFound.map((item) => <button className="border-gray-200 border-2 px-2"> {item.name.common}</button>)}
+        <div className="flex justify-center gap-4 mt-4 flex-wrap">
+          {borderFound ? (
+            borderFound.map((item) => (
+              <button
+                className={`px-2 border-2 text-xs  first-letter ${
+                  darkMode ? darkClasses : "bg-white border-gray-500"
+                }`}
+              >
+                {" "}
+                {item.name.common}
+              </button>
+            ))
+          ) : (
+            <p>None</p>
+          )}
         </div>
-       
       </div>
     );
   }

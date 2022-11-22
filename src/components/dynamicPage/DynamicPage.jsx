@@ -1,11 +1,12 @@
 import React, { useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { chosenData } from "../../config/config";
+import { chosenData, darkClasses} from "../../config/config";
 import { FlagProvContext } from "../../context/FlagProv";
 import FlagComp from "../flagComp/FlagComp";
 
+
 const DynamicPage = () => {
-  const { flags, chosen, setChosen } = useContext(FlagProvContext);
+  const { flags, chosen, setChosen,darkMode } = useContext(FlagProvContext);
 
   const { name } = useParams();
 
@@ -41,11 +42,11 @@ const DynamicPage = () => {
     <div>
       {chosen && (
         <>
-          <div className="flex flex-col justify-center gap-8 p-3 bg-gray-50 ">
+          <div className={`flex flex-col justify-center gap-8 p-3 ${darkMode?"bg-slate-800 border-black text-white":"bg-gray-50 "} `}>
             <div className="mt-4">
               <button
                 onClick={handleNavigate}
-                className="border-2 text-xs border-gray-500"
+                className={`border-2 text-xs  first-letter ${darkMode?darkClasses:"bg-white border-gray-500"}`}
               >
                 Back
               </button>
