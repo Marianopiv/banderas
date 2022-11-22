@@ -14,10 +14,26 @@ const FlagComp = ({ name, flag, region, population, capital }) => {
   ];
 
   if (chosen) {
-    const { population, region, subregion, capital, tld } = chosen;
+
+    
+    const { population, region, subregion, capital, tld,borders } = chosen;
+    console.log(borders)
+
+    /* const details = [
+      { text: "population", data: population },
+      { text: "region", data: region },
+      { text: "subRegion", data: subregion },
+      { text: "Capital", data: capital },
+      { text: "Top", data: tld },
+    ]; */
 
     return (
       <>
+        {/* {details.map(({ text, data }) => {
+          <FlagDetail text={text} data={data} />;
+        })} */}
+        <div className="text-xs">
+
         <FlagDetail text="Population" data={population} />
         <FlagDetail text="Region" data={region} />
         <FlagDetail text="Subregion" data={subregion} />
@@ -35,7 +51,8 @@ const FlagComp = ({ name, flag, region, population, capital }) => {
           <p className="font-bold">Languages:</p>
           {Object.values(chosen.languages).map((item) => item)}
         </div>
-        <h2 className="text xl">Border countries</h2>
+          <FlagDetail text="Border Countries" data={borders} />
+        </div>
       </>
     );
   }
@@ -64,11 +81,3 @@ const FlagComp = ({ name, flag, region, population, capital }) => {
 };
 
 export default FlagComp;
-
-/* Como hacerlo sin repetir componentes const details = [
-  { text: "population", data: population },
-  { text: "region", data: region },
-  { text: "subRegion", data: subregion },
-  { text: "Capital", data: capital },
-  { text: "Top", data: tld },
-]; */
