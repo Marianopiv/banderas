@@ -41,8 +41,8 @@ const FlagDetail = ({ text, data }) => {
         <p className="font-bold">{text}: </p>
         <div className="flex justify-center gap-4 mt-4 flex-wrap">
           {borderFound ? (
-            borderFound.map((item) => (
-              <button
+            borderFound.map((item,index) => (
+              <button key={index}
                 className={`px-2 border-2 text-xs  first-letter ${
                   darkMode ? darkClasses : "bg-white border-gray-500"
                 }`}
