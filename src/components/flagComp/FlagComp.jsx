@@ -14,9 +14,7 @@ const FlagComp = ({ name, flag, region, population, capital }) => {
   ];
 
   if (chosen) {
-
-    
-    const { population, region, subregion, capital, tld,borders } = chosen;
+    const {tld } = chosen;
 
     /* const details = [
       { text: "population", data: population },
@@ -31,27 +29,22 @@ const FlagComp = ({ name, flag, region, population, capital }) => {
         {/* {details.map(({ text, data }) => {
           <FlagDetail text={text} data={data} />;
         })} */}
-        <div className="text-xs">
-
-        <FlagDetail text="Population" data={population} />
-        <FlagDetail text="Region" data={region} />
-        <FlagDetail text="Subregion" data={subregion} />
-        <FlagDetail text="Capital" data={capital} />
-        <FlagDetail text="Top Level Domain" data={tld} />
-        <div className="flex">
-          <p className="font-bold">Currencies:</p>
-          {Object.values(chosen.currencies).map(({ name, symbol }) => (
-            <h3 key={name}>
-              {name} Symbol:{symbol}
-            </h3>
-          ))}
+        <div className="text-xs md:h-96 w-96 pl-4 gap-4 flex flex-col md:pt-48 md:pl-20">
+          <FlagDetail text="Top Level Domain" data={tld} />
+          <div className="flex ">
+            <p className="font-bold">Currencies:</p>
+            {Object.values(chosen.currencies).map(({ name, symbol }) => (
+              <h3 key={name}>
+                {name} Symbol:{symbol}
+              </h3>
+            ))}
+          </div>
+          <div className="flex">
+            <p className="font-bold">Languages:</p>
+            {Object.values(chosen.languages).map((item) => item + " ")}
+          </div>
         </div>
-        <div className="flex">
-          <p className="font-bold">Languages:</p>
-          {Object.values(chosen.languages).map((item) => item+" ")}
-        </div>
-          <FlagDetail text="Border Countries" data={borders} />
-        </div>
+        
       </>
     );
   }

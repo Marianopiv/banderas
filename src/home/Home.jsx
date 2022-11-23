@@ -25,13 +25,13 @@ const Home = () => {
 
   const debounceFunction = useCallback(_.debounce(handleChange,500),[])
   return (
-    <>
+
       <div
         className={`bg-gray-50 flex flex-col gap-4 ${
           darkMode ? " bg-slate-800 text-white" : "bg-white"
         } `}
       >
-        <div className="flex flex-wrap  gap-10 mt-10 h-fit">
+        <div className="flex flex-wrap gap-10 md:gap-0 mt-10 h-fit">
           <div className="flex">
             <div className="flex ">
               <button
@@ -88,7 +88,6 @@ const Home = () => {
               )}
         </div>
       </div>
-    </>
   );
 };
 
