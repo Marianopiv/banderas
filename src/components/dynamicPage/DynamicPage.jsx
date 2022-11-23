@@ -41,7 +41,6 @@ const DynamicPage = () => {
       { text: "region", data: region },
       { text: "subRegion", data: subregion },
       { text: "Capital", data: capital },
-      { text: "Top", data: tld },
     ]; */
     return (
       <>
@@ -88,7 +87,7 @@ const DynamicPage = () => {
           </div>
         </div>
         <div
-          className={`text-xs w-full py-4 pt-20 md:mt-0 md:pb-16  flex flex-wrap first-letter ${
+          className={`text-xs w-full py-4 pt-20 md:pt-0 md:mt-0 md:pb-16  flex flex-wrap first-letter ${
             darkMode ? "bg-slate-800  text-white" : "bg-gray-50 border-gray-500"
           }`}
         >
