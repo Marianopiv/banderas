@@ -1,10 +1,12 @@
 import React, { createContext, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { chosenData } from "../config/config";
 export const FlagProvContext = createContext();
 
 
-const FlagProv = ({ children }) => {
+
+const FlagProv = ({children}) => {
   const [flags, setFlags] = useState(null);
   const [flagSelect, setFlagSelect] = useState('')
   const [darkMode, setdarkMode] = useState(false)
@@ -14,8 +16,10 @@ const FlagProv = ({ children }) => {
   const fetchData = async () => {
     try {
       const result = await axios.get("https://restcountries.com/v3.1/all");
+      console.log(result.data)
       setFlags(result.data);
     } catch (error) {
+      console.log("no anduvo")
     }
   };
 
@@ -46,7 +50,21 @@ const FlagProv = ({ children }) => {
     setdarkMode(!darkMode)
 
   }
-  return (<FlagProvContext.Provider value={{fetchData,flags,setFlags,fetchFilter,toogleDarkMode,darkMode,flagSelect,setFlagSelect,handleRegion,chosen,setChosen}}>{children}</FlagProvContext.Provider>)
+
+  const handleFlagDetail = (name) => {
+    if (flags.length > 0) {
+      const result = flags.find((item) => item.name.common === name);
+
+      const utilData = {};
+      Object.entries(result).map((item) => {
+        if (chosenData.includes(item[0])) {
+          utilData[item[0]] = item[1];
+        }
+      });
+      setChosen(utilData);
+    }
+  };
+  return (<FlagProvContext.Provider value={{fetchData,flags,setFlags,fetchFilter,toogleDarkMode,darkMode,flagSelect,setFlagSelect,handleRegion,chosen,setChosen,handleFlagDetail}}>{children}</FlagProvContext.Provider>)
 };
 
 export default FlagProv;

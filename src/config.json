@@ -1,0 +1,5 @@
+{
+    "bandera":{
+        "banderaItemInfo":["population", "region", "subregion", "capital"]
+    }
+}

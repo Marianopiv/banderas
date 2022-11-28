@@ -14,26 +14,19 @@ const FlagComp = ({ name, flag, region, population, capital }) => {
   ];
 
   if (chosen) {
-    const {tld } = chosen;
-
-    /* const details = [
-      { text: "population", data: population },
-      { text: "region", data: region },
-      { text: "subRegion", data: subregion },
-      { text: "Capital", data: capital },
-      { text: "Top", data: tld },
-    ]; */
+    const { tld,currencies,languages } = chosen;
 
     return (
       <>
-        {/* {details.map(({ text, data }) => {
-          <FlagDetail text={text} data={data} />;
-        })} */}
-        <div className="text-xs md:h-96 w-96 pl-4 gap-4 flex flex-col md:pt-48 md:pl-20">
+        <div
+          className={`text-xs py-3 md:h-96  pl-4 gap-4 flex flex-col md:pt-48 md:pl-20  ${
+            darkMode ? "bg-slate-800  text-white" : "bg-gray-50 border-gray-500"
+          }`}
+        >
           <FlagDetail text="Top Level Domain" data={tld} />
           <div className="flex ">
             <p className="font-bold">Currencies:</p>
-            {Object.values(chosen.currencies).map(({ name, symbol }) => (
+            {Object.values(currencies).map(({ name, symbol }) => (
               <h3 key={name}>
                 {name} Symbol:{symbol}
               </h3>
@@ -41,10 +34,9 @@ const FlagComp = ({ name, flag, region, population, capital }) => {
           </div>
           <div className="flex">
             <p className="font-bold">Languages:</p>
-            {Object.values(chosen.languages).map((item) => item + " ")}
+            {Object.values(languages).map((item) => item + " ")}
           </div>
         </div>
-        
       </>
     );
   }
