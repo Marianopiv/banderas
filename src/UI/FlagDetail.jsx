@@ -13,8 +13,6 @@ const FlagDetail = ({ text, data }) => {
       try {
         const result = await axios.get("https://restcountries.com/v3.1/all");
         setFullBorders(result.data);
-        if (fullBorders) {
-        }
       } catch (error) {
         console.log("no anduvo");
       }
@@ -67,3 +65,6 @@ const FlagDetail = ({ text, data }) => {
 };
 
 export default FlagDetail;
+
+
+//Helper qeu por un lado agarre los paises, por otro lado arranque los iniciales, y me devuelva esos items, y despues lo guardo en otra variable de arrays y lo devuelvo, SIN ESTADOS, hacerlo pasar por parametros desde el helper.

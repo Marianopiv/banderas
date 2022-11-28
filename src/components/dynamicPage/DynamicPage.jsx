@@ -1,16 +1,17 @@
 import React, { useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { chosenData, darkClasses } from "../../config/config";
+import {darkClasses } from "../../config/config";
 import { FlagProvContext } from "../../context/FlagProv";
+import { dynamicObject } from "../../helper";
 import FlagDetail from "../../UI/FlagDetail";
 import FlagComp from "../flagComp/FlagComp";
+import config from "../../config.json"
 import "./dynamic.css";
-
 const DynamicPage = () => {
-  const {chosen, setChosen, darkMode,handleFlagDetail } = useContext(FlagProvContext);
+  const { chosen, setChosen, darkMode, handleFlagDetail } =
+    useContext(FlagProvContext);
 
   const { name } = useParams();
-
 
   useEffect(() => {
     if (!chosen) {
@@ -26,22 +27,9 @@ const DynamicPage = () => {
   };
 
   if (chosen) {
-    const {
-      population,
-      region,
-      subregion,
-      capital,
-      borders,
-      flags,
-      name,
-    } = chosen;
-
-    /* const details = [
-      { text: "population", data: population },
-      { text: "region", data: region },
-      { text: "subRegion", data: subregion },
-      { text: "Capital", data: capital },
-    ]; */
+    const {borders, flags, name } =
+      chosen;
+    console.log(chosen)
     return (
       <>
         <div
@@ -72,13 +60,10 @@ const DynamicPage = () => {
                 {Object.values(name.nativeName).map(({ common }, index) => (
                   <h3 key={index}>{common}</h3>
                 ))}
-                {/* {details.map(({text,data})=>{
-                      <FlagDetail text={text} data={data}/>
-                    })}  */}
-                <FlagDetail text="Population" data={population} />
-                <FlagDetail text="Region" data={region} />
-                <FlagDetail text="Subregion" data={subregion} />
-                <FlagDetail text="Capital" data={capital} />
+
+                {dynamicObject(chosen, config.bandera.banderaItemInfo).map(({ text, data },index) => (
+                  <FlagDetail key={index} text={text} data={data} />
+                ))}
               </div>
             </div>
           </div>

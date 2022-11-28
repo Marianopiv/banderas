@@ -6,7 +6,7 @@ export const FlagProvContext = createContext();
 
 
 
-const FlagProv = ({ children }) => {
+const FlagProv = ({children}) => {
   const [flags, setFlags] = useState(null);
   const [flagSelect, setFlagSelect] = useState('')
   const [darkMode, setdarkMode] = useState(false)
@@ -16,8 +16,10 @@ const FlagProv = ({ children }) => {
   const fetchData = async () => {
     try {
       const result = await axios.get("https://restcountries.com/v3.1/all");
+      console.log(result.data)
       setFlags(result.data);
     } catch (error) {
+      console.log("no anduvo")
     }
   };
 
