@@ -29,7 +29,6 @@ const DynamicPage = () => {
   if (chosen) {
     const {borders, flags, name } =
       chosen;
-    console.log(chosen)
     return (
       <>
         <div

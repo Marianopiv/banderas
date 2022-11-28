@@ -11,13 +11,15 @@ const FlagProv = ({children}) => {
   const [flagSelect, setFlagSelect] = useState('')
   const [darkMode, setdarkMode] = useState(false)
   const [chosen, setChosen] = useState(null);
+  const [fullBorders, setFullBorders] = useState(null);
+
 
 
   const fetchData = async () => {
     try {
       const result = await axios.get("https://restcountries.com/v3.1/all");
-      console.log(result.data)
       setFlags(result.data);
+      setFullBorders(result.data)
     } catch (error) {
       console.log("no anduvo")
     }
@@ -64,7 +66,11 @@ const FlagProv = ({children}) => {
       setChosen(utilData);
     }
   };
-  return (<FlagProvContext.Provider value={{fetchData,flags,setFlags,fetchFilter,toogleDarkMode,darkMode,flagSelect,setFlagSelect,handleRegion,chosen,setChosen,handleFlagDetail}}>{children}</FlagProvContext.Provider>)
+
+
+ 
+
+  return (<FlagProvContext.Provider value={{fetchData,flags,setFlags,fetchFilter,toogleDarkMode,darkMode,flagSelect,setFlagSelect,handleRegion,chosen,setChosen,handleFlagDetail,fullBorders}}>{children}</FlagProvContext.Provider>)
 };
 
 export default FlagProv;
