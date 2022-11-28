@@ -9,9 +9,9 @@ const FlagDetail = ({ text, data }) => {
 
     return (
       <div className="flex pl-4 md:pl-0 md:gap-8 flex-col w-full md:flex-row md:items-center md:justify-end md:mr-4 mt-8 md:mt-0">
-         <p className="text-xs font-bold md:mx-4">{text}:</p>
+        <p className="text-xs font-bold md:mx-4">{text}:</p>
         <div className="flex justify-center gap-6 mt-4 flex-wrap">
-          {handleBorders(fullBorders, data) ?(
+          {handleBorders(fullBorders, data) &&
             handleBorders(fullBorders, data).map((item, index) => (
               <button
                 key={index}
@@ -22,19 +22,17 @@ const FlagDetail = ({ text, data }) => {
                 {" "}
                 {item.name.common}
               </button>
-            ))
-          ) : (
-            <p>None</p>
-          )}
+            ))}
         </div>
       </div>
     );
   }
 
   return (
-    
     <div className="flex py-1">
-      <p className="font-bold text-xs capitalize">{text=== "Border Countries"?"":text}</p>
+      <p className="font-bold text-xs capitalize">
+        {text === "Border Countries" ? "" : text}
+      </p>
       <p>{data}</p>
     </div>
   );
