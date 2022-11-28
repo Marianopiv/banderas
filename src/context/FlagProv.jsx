@@ -19,6 +19,7 @@ const FlagProv = ({children}) => {
     try {
       const result = await axios.get("https://restcountries.com/v3.1/all");
       setFlags(result.data);
+      setFullBorders(result.data)
     } catch (error) {
       console.log("no anduvo")
     }
@@ -28,7 +29,6 @@ const FlagProv = ({children}) => {
     try {
       const result = await axios.get(`https://restcountries.com/v3.1/${section}/${name}`)
       setFlags(result.data)
-      setFullBorders(result.data)
     } catch (error) {
       Swal.fire({
         background:`${darkMode?'#202D36':'white'}`,
