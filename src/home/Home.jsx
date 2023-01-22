@@ -29,7 +29,7 @@ const Home = () => {
 
       <div
         className={`bg-gray-50 flex flex-col gap-4 ${
-          darkMode ? " bg-slate-800 text-white" : "bg-white"
+          darkMode ? " bg-slate-800 text-white" : "bg-white dark:bg-white"
         } `}
       >
         <div className="flex flex-wrap gap-10 md:gap-0 mt-10 h-fit">
@@ -74,7 +74,7 @@ const Home = () => {
         </div>
         <div className="flex justify-center md:justify-between sm:gap-10 md:gap-10 flex-wrap">
           {!flags
-            ? <> <h1 className="text-black dark:text-black h-screen">LOADER</h1>
+            ? <> <h1 className="text-black dark:text-white h-screen">LOADER</h1>
             </>
             : flags.map(
                 ({ name, flags, region, population, capital }, index) => (
