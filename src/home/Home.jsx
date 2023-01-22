@@ -56,7 +56,7 @@ const Home = () => {
         <div>
           <select
             className={`text-xs m-2 p-3  border-2 rounded-md ${
-              darkMode ? darkClasses : "bg-white border-gray-100"
+              darkMode ? darkClasses : "bg-white border-gray-100 dark:text-black"
             } `}
             name=""
             id=""
