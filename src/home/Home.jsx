@@ -74,7 +74,7 @@ const Home = () => {
         </div>
         <div className="flex justify-center md:justify-between sm:gap-10 md:gap-10 flex-wrap">
           {!flags
-            ? <> <h1 className="text-black dark:text-white h-screen">LOADER</h1>
+            ? <> <h1 className="text-black h-screen dark:text-white">LOADER</h1>
             </>
             : flags.map(
                 ({ name, flags, region, population, capital }, index) => (
