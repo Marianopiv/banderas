@@ -3,7 +3,7 @@ import FlagComp from "../components/flagComp/FlagComp";
 import { FlagProvContext } from "../context/FlagProv";
 import { regionNames, darkClasses } from "../config/config";
 import _ from "lodash";
-import "./App.css"
+import "../App.css"
 
 const Home = () => {
   const {
@@ -74,8 +74,10 @@ const Home = () => {
         </div>
         <div className="flex justify-center md:justify-between sm:gap-10 md:gap-10 flex-wrap">
           {!flags
-            ? <> <h1 className="text-black h-screen dark:text-white">LOADER</h1>
-            </>
+            ? <div className="flex justify-center mx-auto"> <div className="loadingio-spinner-bars-z02ak8kda0e h-screen"><div className="ldio-gzl74iuo5jd">
+            <div></div><div></div><div></div><div></div>
+            </div></div>
+            </div>
             : flags.map(
                 ({ name, flags, region, population, capital }, index) => (
                   <FlagComp
