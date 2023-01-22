@@ -47,7 +47,7 @@ const Home = () => {
             <input
               onChange={debounceFunction}
               className={`text-xs w-5/6 p-3 border-2  rounded-md ${
-                darkMode ? darkClasses : "bg-white border-gray-100"
+                darkMode ? darkClasses : "bg-white border-gray-100 dark:text-black"
               }`}
               type="text"
               placeholder="Search for a country..."
