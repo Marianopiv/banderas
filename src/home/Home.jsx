@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
 import FlagComp from "../components/flagComp/FlagComp";
 import { FlagProvContext } from "../context/FlagProv";
 import { regionNames, darkClasses } from "../config/config";
