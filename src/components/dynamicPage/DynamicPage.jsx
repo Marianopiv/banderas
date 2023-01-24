@@ -33,7 +33,7 @@ const DynamicPage = () => {
       <>
         <div
           className={`customHeight flex  flex-col md:flex-row justify-center md:justify-around gap-8 p-3 ${
-            darkMode ? "bg-slate-800 border-black text-white" : "bg-gray-50 dark:text-white "
+            darkMode ? "bg-slate-800 border-black text-white" : "bg-gray-50 dark:text-black "
           } `}
         >
           <div className="mt-24 md:absolute md:left-4">
