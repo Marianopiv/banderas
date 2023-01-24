@@ -72,7 +72,7 @@ const DynamicPage = () => {
         </div>
         <div
           className={`text-xs w-full py-4 pt-20 md:pt-0 md:mt-0 md:pb-16  flex flex-wrap first-letter ${
-            darkMode ? "bg-slate-800  text-white" : "bg-gray-50 border-gray-500"
+            darkMode ? "bg-slate-800  text-white" : "bg-gray-50 border-gray-500 dark:text-black"
           }`}
         >
           <FlagDetail text="Border Countries" data={borders} />
