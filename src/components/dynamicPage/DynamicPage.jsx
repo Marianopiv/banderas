@@ -56,7 +56,7 @@ const DynamicPage = () => {
                   {chosen.name.common}
                 </h2>
                 <p className="font-bold">Native name:</p>
-                {Object.values(name.nativeName).map(({ common }, index) => (
+                {name&&Object.values(name.nativeName).map(({ common }, index) => (
                   <h3 key={index}>{common}</h3>
                 ))}
 
