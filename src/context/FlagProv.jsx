@@ -54,7 +54,7 @@ const FlagProv = ({children}) => {
   }
 
   const handleFlagDetail = (name) => {
-    if (flags.length > 0) {
+    if (flags&&flags.length > 0) {
       const result = flags.find((item) => item.name.common === name);
 
       const utilData = {};
