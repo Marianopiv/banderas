@@ -26,7 +26,7 @@ const FlagComp = ({ name, flag, region, population, capital }) => {
           <FlagDetail text="Top Level Domain" data={tld} />
           <div className="flex ">
             <p className="font-bold">Currencies:</p>
-            {Object.values(currencies).map(({ name, symbol }) => (
+            {currencies&&Object.values(currencies).map(({ name, symbol }) => (
               <h3 key={name}>
                 {name} Symbol:{symbol}
               </h3>
@@ -54,7 +54,7 @@ const FlagComp = ({ name, flag, region, population, capital }) => {
             {flagData.map(({ name, info }) => (
               <div key={name} className="flex py-1 px-1">
                 <p className="font-bold">{name}</p>
-                <p>{info}</p>
+                <p>{info&&info}</p>
               </div>
             ))}
           </div>
