@@ -1,75 +1,89 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import FlagComp from "../components/flagComp/FlagComp";
-import NavBar from "../components/navBar/NavBar";
 import { FlagProvContext } from "../context/FlagProv";
+import { regionNames, darkClasses } from "../config/config";
+import _ from "lodash";
 
 const Home = () => {
-  const { fetchData, flags, fetchFilter, flagSelect, setFlagSelect } =
-    useContext(FlagProvContext);
+  const {
+    fetchData,
+    flags,
+    fetchFilter,
+    flagSelect,
+    setFlagSelect,
+    darkMode,
+    handleRegion,
+  } = useContext(FlagProvContext);
 
   useEffect(() => {
     fetchData();
   }, [flagSelect]);
 
-  const handleRegion = (e) => {
-    const {value} = e.target
-    if (value != "") {
-      fetchFilter("region", value);
-    }
+  const handleChange = (e) => {
+    setFlagSelect(e.target.value);
   };
 
-  console.log(flagSelect);
+  const debounceFunction = useCallback(_.debounce(handleChange,500),[])
   return (
     <>
-      <NavBar />
-      <div className="bg-gray-50 flex flex-col gap-4">
+      <div
+        className={`bg-gray-50 flex flex-col gap-4 ${
+          darkMode ? " bg-slate-800 text-white" : "bg-white"
+        } `}
+      >
         <div className="flex flex-wrap  gap-10 mt-10 h-fit">
           <div className="flex">
-            <button
-              onClick={() => fetchFilter("name", flagSelect)}
-              className="w-8 text-gray-400"
-            >
-              🔍︎
-            </button>
+            <div className="flex ">
+              <button
+                onClick={() => fetchFilter("name", flagSelect)}
+                className={` text-gray-400  ${
+                  darkMode ? darkClasses : "bg-white"
+                }`}
+              >
+                🔍︎
+              </button>
+            </div>
             <input
-              onChange={(e) => setFlagSelect(e.target.value)}
-              className="text-xs w-5/6 p-3 border-2 border-gray-100 rounded-md"
+              onChange={debounceFunction}
+              className={`text-xs w-5/6 p-3 border-2  rounded-md ${
+                darkMode ? darkClasses : "bg-white border-gray-100"
+              }`}
               type="text"
-              placeholder="   Search for a country..."
+              placeholder="Search for a country..."
             />
           </div>
         </div>
         <div>
           <select
-            className="text-xs m-2 p-3 border-gray-100 border-2 rounded-md"
+            className={`text-xs m-2 p-3  border-2 rounded-md ${
+              darkMode ? darkClasses : "bg-white border-gray-100"
+            } `}
             name=""
             id=""
             onClick={(e) => handleRegion(e)}
             placeholder="Filter by region"
           >
             <option value=""> Filter by region</option>
-            <option value="Asia">Asia</option>
-            <option value="Europe">Europe</option>
-            <option value="Africa">Africa</option>
-            <option value="America">America</option>
-            <option value="Oceania">Oceania</option>
+            {regionNames.map((item) => (
+              <option className="rounded-md" key={item} value={item}>
+                {item}
+              </option>
+            ))}
           </select>
         </div>
-        <div className="flex justify-center flex-wrap">
+        <div className="flex justify-center md:justify-between sm:gap-10 md:gap-10 flex-wrap">
           {!flags
             ? "Loading"
             : flags.map(
                 ({ name, flags, region, population, capital }, index) => (
-                  <>
-                    <FlagComp
-                      key={index}
-                      name={name.common}
-                      flag={flags.png}
-                      region={region}
-                      population={population}
-                      capital={capital}
-                    />
-                  </>
+                  <FlagComp
+                    key={index}
+                    name={name.common}
+                    flag={flags.png}
+                    region={region}
+                    population={population}
+                    capital={capital}
+                  />
                 )
               )}
         </div>
