@@ -7,6 +7,12 @@ const Home = () => {
   const { fetchData, flags, loading, error } = useContext(FlagProvContext);
   const [search, setSearch] = useState("");
   const [region, setRegion] = useState("");
+  const [darkMode, setDarkMode] = useState(() => localStorage.getItem("banderas-theme") === "dark");
+
+  useEffect(() => {
+    localStorage.setItem("banderas-theme", darkMode ? "dark" : "light");
+    document.documentElement.classList.toggle("dark", darkMode);
+  }, [darkMode]);
 
   useEffect(() => {
     fetchData();
@@ -18,9 +24,9 @@ const Home = () => {
   );
 
   return (
-    <>
-      <NavBar />
-      <div className="bg-gray-50 flex flex-col gap-4 min-h-screen">
+    <div className="min-h-screen bg-gray-50 text-gray-900 dark:bg-slate-900 dark:text-white">
+      <NavBar darkMode={darkMode} onToggleDarkMode={() => setDarkMode((value) => !value)} />
+      <main className="flex flex-col gap-4 min-h-screen px-8">
         <div className="flex flex-wrap gap-10 mt-10 h-fit">
           <div className="flex">
             <span aria-hidden="true" className="w-8 text-gray-400 p-2">🔍︎</span>
@@ -28,7 +34,7 @@ const Home = () => {
               value={search}
               onChange={(event) => setSearch(event.target.value)}
               aria-label="Search for a country"
-              className="text-xs w-5/6 p-3 border-2 border-gray-100 rounded-md"
+              className="text-xs w-5/6 p-3 border-2 border-gray-100 rounded-md bg-white text-gray-900 dark:bg-slate-800 dark:text-white dark:border-slate-700"
               type="search"
               placeholder="Search for a country..."
             />
@@ -36,7 +42,7 @@ const Home = () => {
         </div>
         <div>
           <select
-            className="text-xs m-2 p-3 border-gray-100 border-2 rounded-md"
+            className="text-xs m-2 p-3 border-gray-100 border-2 rounded-md bg-white text-gray-900 dark:bg-slate-800 dark:text-white dark:border-slate-700"
             value={region}
             onChange={(event) => setRegion(event.target.value)}
             aria-label="Filter by region"
@@ -65,8 +71,8 @@ const Home = () => {
             )) : <p>No countries found.</p>
           )}
         </div>
-      </div>
-    </>
+      </main>
+    </div>
   );
 };
 
