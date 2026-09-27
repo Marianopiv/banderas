@@ -1,4 +1,4 @@
-const countriesUrl = "https://restcountries.com/v3.1/all?fields=name,flags,region,population,capital";
+const countriesUrl = "https://countries.dev/countries?fields=name,flags,region,population,capital";
 
 export default async function handler(request, response) {
   try {
@@ -6,9 +6,14 @@ export default async function handler(request, response) {
     if (!upstream.ok) throw new Error(`Countries API returned ${upstream.status}`);
 
     const payload = await upstream.json();
-    console.log("Country payload shape", { success: payload.success, dataIsArray: Array.isArray(payload.data), dataKeys: payload.data && typeof payload.data === "object" ? Object.keys(payload.data).slice(0, 12) : [], errors: payload.errors });
-    const countries = Array.isArray(payload) ? payload : payload.data;
-    if (!Array.isArray(countries)) throw new Error("Unexpected country payload");
+    if (!Array.isArray(payload)) throw new Error("Unexpected country payload");
+    const countries = payload.map((country) => ({
+      name: { common: country.name },
+      flags: country.flags,
+      region: country.region,
+      population: country.population,
+      capital: country.capital ? [country.capital] : [],
+    }));
 
     response.setHeader("Cache-Control", "s-maxage=3600, stale-while-revalidate=86400");
     response.status(200).json(countries);
