@@ -3,22 +3,12 @@ const countriesUrl =
 
 export default async function handler(request, response) {
   try {
-    const upstream = await fetch(countriesUrl, {
-      signal: AbortSignal.timeout(8000),
-    });
+    const upstream = await fetch(countriesUrl, { signal: AbortSignal.timeout(8000) });
+    if (!upstream.ok) throw new Error(`Countries API returned ${upstream.status}`);
 
-    if (!upstream.ok) {
-      throw new Error(`Countries API returned ${upstream.status}`);
-    }
-
-    const countries = await upstream.json();
-    console.log("Country payload", {
-      isArray: Array.isArray(countries),
-      keys: Object.keys(countries).slice(0, 8),
-    });
-    if (!Array.isArray(countries)) {
-      throw new Error("Countries API returned an unexpected response");
-    }
+    const payload = await upstream.json();
+    const countries = Array.isArray(payload) ? payload : payload.data;
+    if (!Array.isArray(countries)) throw new Error("Unexpected country payload");
 
     response.setHeader("Cache-Control", "s-maxage=3600, stale-while-revalidate=86400");
     response.status(200).json(countries);
