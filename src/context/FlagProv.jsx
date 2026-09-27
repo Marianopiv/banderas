@@ -12,10 +12,7 @@ const FlagProv = ({ children }) => {
     setLoading(true);
     setError(false);
     try {
-      // The /all endpoint requires an explicit list of fields.
-      const result = await axios.get(
-        "https://restcountries.com/v3.1/all?fields=name,flags,region,population,capital"
-      );
+      const result = await axios.get("/api/countries");
       setFlags(result.data);
     } catch (fetchError) {
       setError(true);
