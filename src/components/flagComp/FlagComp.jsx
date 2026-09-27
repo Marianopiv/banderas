@@ -7,7 +7,7 @@ const FlagComp = ({ name, flag, region, population, capital }) => {
     { name: "Capital:", info: capital },
   ];
   return (
-    <div className="rounded-lg bg-white my-2 border-2">
+    <div className="rounded-lg bg-white my-2 border-2 dark:bg-slate-800 dark:border-slate-700">
       <img className="h-40 w-64 rounded-lg" src={flag} alt="" />
       <div className="flex flex-col ml-10">
         <h2 className="text-xl font-bold py-4">{name}</h2>
